@@ -26,15 +26,14 @@ exports.comparePassword = async function(plain, userinfo, req){
 }
 
 exports.createUser = async function(req, res){
-    let hash = await bcrypt.hash('test', 10);
+    let hash = await bcrypt.hash(req.body.password, 10);
 
-/*     let user = new model.User({
-        email: "morten@iba.dk",
+    let user = new model.User({
+        email: req.body.email,
         password: hash, 
-        firstname: "Morten",
-        lastname: "Højrup Kristensen",
-        rights: model.Role.ADMIN
-      }); */
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+      });
     
     await mongooseWrap.save(user); 
 }

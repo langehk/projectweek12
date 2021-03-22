@@ -11,6 +11,10 @@ router.get('/login', function(req, res, next) {
   res.render('login', { title: 'Express' });
 });
 
+router.get('/createuser', function(req, res, next) {
+  res.render('createuser', { title: 'Express' });
+});
+
 router.post('/login', async function(req, res, next) { 
   let query = {email: req.body.email};
   handler.readUser(req, res, query).
@@ -24,5 +28,18 @@ router.post('/login', async function(req, res, next) {
         }
     });
 });
+
+router.post('/createuser', async function(req, res){
+  console.log(req);
+  if(req.body.password == req.body.passwordRepeat){
+    console.log(req);
+
+    handler.createUser(req);
+  }
+  else{
+    res.render('createuser', {message: 'Passwords do not match'});
+  }
+  
+})
 
 module.exports = router;
