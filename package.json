@@ -10,6 +10,7 @@
     "cookie-parser": "^1.4.5",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "express-session": "^1.17.1",
     "express-sessions": "^1.0.6",
     "http-errors": "~1.6.3",
     "mongoose": "^5.12.1",
