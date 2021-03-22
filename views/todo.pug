@@ -1,3 +1,22 @@
 extends layout
 block content
-    p Your tasks
+    form(method="post" id="taskForm" action="")
+        label(for="description") Task:
+        input(type="text" name="description")
+        label(for="priority") Priority:
+        select(name="priority")
+            option(value="Low")
+            option(value="Medium")
+            option(value="High") 
+        label(for="deadline") Deadline:
+        input(type="date" name="date")
+        input(type="submit" id="taskButton" value="Create")
+
+    h3 Your tasks:
+    each task in pendingTasks
+        div(id=task._id)
+            p #{task.description}
+            a(href="/todo/complete/" + task._id)
+                Button Complete
+            a(href="/todo/delete/" + task._id)
+                Button Remove
