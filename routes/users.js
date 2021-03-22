@@ -15,6 +15,11 @@ router.get('/createuser', function(req, res, next) {
   res.render('createuser', { title: 'Express' });
 });
 
+router.get('/acceptuser/:email', async function(req, res, next) {
+  await handler.updateUser(req, res, {email: req.params.email}, {rights: 'USER'});
+  res.redirect('../../todo');
+});
+
 router.post('/login', async function(req, res, next) { 
   let query = {email: req.body.email};
   handler.readUser(req, res, query).

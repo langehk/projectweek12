@@ -37,3 +37,13 @@ exports.createUser = async function(req, res){
     
     await mongooseWrap.save(user); 
 }
+
+exports.updateUser = async function(req, res, query, updateQuery){
+  try {
+    console.log(query);
+    console.log(updateQuery);
+      mongooseWrap.update(model.User, query, updateQuery);
+  } catch (error) {
+      console.log(error);
+  }
+}

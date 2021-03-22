@@ -1,3 +1,9 @@
 extends layout
 block content
-    p You are an admin
+    each user in pendingUsers
+        div
+            p #{user.firstname} #{user.lastname} 
+            a(href='../users/acceptuser/' + user.email)
+                button Accept
+            a(href='../users/declineuser' + user.email)
+                button Decline
