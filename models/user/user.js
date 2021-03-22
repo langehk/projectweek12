@@ -2,7 +2,8 @@ const mongoose = require("mongoose");
 
 const Role = {
     ADMIN: 'ADMIN',
-    USER: 'USER'
+    USER: 'USER',
+    PENDING: 'PENDING'
 }
 
 const userSchema = mongoose.Schema({
@@ -11,7 +12,7 @@ const userSchema = mongoose.Schema({
     password: String,
     firstname: String, 
     lastname: String,
-    rights: {type: String, enum: Role, default: Role.USER}
+    rights: {type: String, enum: Role, default: Role.PENDING}
 });
 
 const User = mongoose.model("User", userSchema, 'user');
