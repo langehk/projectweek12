@@ -1,6 +1,7 @@
 extends layout 
 
 block content
+    p #{message}
     form(method="post" id="loginForm" action="")
         label(for="email") Enter e-mail:
         input(type="email" name="email")
