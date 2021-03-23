@@ -1,22 +1,25 @@
 extends layout
 block content
-    p(class="subtitle") Pending users: 
-    each user in pendingUsers
-        div
-            p #{user.firstname} #{user.lastname} 
-            a(href='../users/acceptuser/' + user.email)
-                button Accept
-            a(href='../users/declineuser/' + user.email)
-                button Decline
-
-    p(class="subtitle") Users: 
-    form(method="post" id="exportTodoForm" action="/export")
-        select(name="chosenuser")
-            each user in users
-                option(value=user.email) #{user.firstname} #{user.lastname} (#{user.email})
-        select(name="format")
-            option(value="xml") XML
-            option(value="json") JSON
-        input(type="submit" name="exportButton" value="Export")
+    div(id="pendingUsers")
+        p(class="subtitle") Pending users: 
+        each user in pendingUsers
+            div
+                p #{user.firstname} #{user.lastname} 
+                a(href='../users/acceptuser/' + user.email)
+                    button Accept
+                a(href='../users/declineuser/' + user.email)
+                    button Decline
+    div(id="getTodolist")
+        p(class="subtitle") Get a todo-list: 
+        form(method="post" id="exportTodoForm" action="/export")
+            label(for="chosenuser") Users:
+            select(name="chosenuser")
+                each user in users
+                    option(value=user.email) #{user.firstname} #{user.lastname} (#{user.email})
+            label(for="format") Format:
+            select(name="format")
+                option(value="xml") XML
+                option(value="json") JSON
+            input(type="submit" name="exportButton" value="Export")
 
 
