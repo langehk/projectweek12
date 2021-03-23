@@ -19,7 +19,12 @@ router.get('/', async function(req, res, next) {
       {status: false}]
     }; 
     let pendingTasks = await taskHandler.readTask(res, res, pendingQuery);
-    res.render('todo', { pendingTasks: pendingTasks });
+    let completedQuery = {$and: 
+      [{userID: user[0]._id}, 
+      {status: true}]
+    }; 
+    let completedTasks = await taskHandler.readTask(res, res, completedQuery);
+    res.render('todo', { pendingTasks: pendingTasks, completedTasks: completedTasks });
   } else if(req.session.authenticated && req.session.role == 'PENDING'){
     res.render('pending', { title: 'Express' });
   } else {

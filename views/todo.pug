@@ -26,3 +26,7 @@ block content
             a(href="/todo/delete/" + task._id)
                 Button Remove
             hr
+    h3 What you've done so far:
+    each task in completedTasks
+        div(id=task._id clas="taskContainers")
+            p(class="completed") #{task.description}

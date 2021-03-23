@@ -10,3 +10,8 @@ a {
 .description, .subtitle{
   font-weight: bold;
 }
+
+.completed {
+  color: gray;
+  text-decoration: line-through;
+}
