@@ -1,5 +1,6 @@
 const model = require("./task");
 const mongooseWrap = require ('../../lib/mongooseWrap');
+const date = require('../../lib/date');
 
 exports.readTask = async function(req, res, query){
     try {
@@ -17,7 +18,7 @@ exports.createTask = async function(req, res, userID){
         let task = new model.Task({
             userID: userID,
             description: req.body.description,
-            startDate: "2021-03-22",
+            startDate: date.formatedDate(),
             deadline: req.body.deadline,
             priority: req.body.priority
         })
@@ -31,6 +32,14 @@ exports.createTask = async function(req, res, userID){
 exports.updateTask = async function(req, res, query, updateQuery){
     try {
         mongooseWrap.update(model.Task, query, updateQuery)
+    } catch (error) {
+        
+    }
+}
+
+exports.removeTask = async function(req, res, query){
+    try {
+        mongooseWrap.delete(model.Task, query);
     } catch (error) {
         
     }

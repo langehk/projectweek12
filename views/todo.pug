@@ -5,18 +5,24 @@ block content
         input(type="text" name="description")
         label(for="priority") Priority:
         select(name="priority")
-            option(value="Low")
-            option(value="Medium")
-            option(value="High") 
+            option(value="Low") Low
+            option(value="Medium") Medium
+            option(value="High") High
         label(for="deadline") Deadline:
-        input(type="date" name="date")
+        input(type="date" name="deadline")
         input(type="submit" id="taskButton" value="Create")
+    hr
 
     h3 Your tasks:
     each task in pendingTasks
-        div(id=task._id)
-            p #{task.description}
+        div(id=task._id clas="taskContainers")
+            p(class="description") #{task.description}
+            p(class="subtitle") Deadline
+            p #{task.deadline}
+            p(class="subtitle") Priority
+            p #{task.priority}
             a(href="/todo/complete/" + task._id)
                 Button Complete
             a(href="/todo/delete/" + task._id)
                 Button Remove
+            hr

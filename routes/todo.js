@@ -3,6 +3,7 @@ var router = express.Router();
 const adminHandler = require('../models/admin/adminHandler');
 const taskHandler = require('../models/task/taskHandler');
 const userHandler = require('../models/user/userHandler');
+const date = require('../lib/date');
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
@@ -27,8 +28,16 @@ router.get('/', async function(req, res, next) {
 
 router.get('/complete/:taskID', async function(req, res, next){
   let query = {_id: req.params.taskID}; 
-  let updateQuery = {status: true}; 
+  let updateQuery = {$set: 
+    {status: true, completionDate: date.formatedDate()}}; 
   await taskHandler.updateTask(req, res, query, updateQuery);
+  res.redirect('/todo');  
+})
+
+
+router.get('/delete/:taskID', async function(req, res, next){
+  let query = {_id: req.params.taskID}; 
+  await taskHandler.removeTask(req, res, query);
   res.redirect('/todo');  
 })
 
@@ -36,6 +45,7 @@ router.post('/', async function(req, res, next){
   
   let user = await userHandler.readUser(req, res, {email: req.session.user});
   console.log(user[0]._id);
-  taskHandler.createTask(req, res, user[0]._id);
+  await taskHandler.createTask(req, res, user[0]._id);
+  res.redirect('/todo');
 })
 module.exports = router;
