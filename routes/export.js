@@ -3,7 +3,7 @@ var router = express.Router();
 const taskHandler = require('../models/task/taskHandler');
 const userHandler = require('../models/user/userHandler');
 const fs = require('fs').promises;
-const xml2js = require("xml2js");
+var EasyXml = require('easyxml');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -15,20 +15,24 @@ router.post('/', async function(req, res, next) {
   let format = req.body.format; 
   let user = await userHandler.readUser({email: userEmail}); 
   let tasks = await taskHandler.readTask({userID: user[0]._id}); 
-  tasks = JSON.stringify(tasks);
-  if(format == 'json'){
-    tasks = JSON.stringify(tasks); 
-  }
+  tasks = JSON.stringify(tasks); 
   if(format == 'xml'){
-/*     let builder = new xml2js.Builder();
-    let xml; 
-    for (let i = 0; i < tasks.length; i++) {
-      xml += tasks[i];
-      xml += ',';
-    } */
-    let builder = new xml2js.Builder();
-    tasks = builder.buildObject(tasks);
-    console.log(tasks);
+    tasks = JSON.parse(tasks); //needs to get JSON stringified to stringify ID, and then converted back to objects
+    var serializer = new EasyXml({
+        singularize: true,
+        rootElement: 'todo',
+        dateFormat: 'ISO',
+        manifest: false,
+        unwrapArrays: false
+    });
+
+    let xml = `<?xml version='1.0' encoding='utf-8'?>`; //manifest of xml-file
+    for (let i = 0; i < tasks.length; i++) { //looping through our array of objects
+      xml += serializer.render(tasks[i]); //convert to XML format
+    }
+    xml += `</xml>`
+    tasks = xml;
+
   }
   
   await fs.writeFile(`${user[0].firstname}_${user[0].lastname}_todo.${format}`, tasks, function(err) {

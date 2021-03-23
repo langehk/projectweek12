@@ -10,6 +10,7 @@
     "browserfs": "^1.4.3",
     "cookie-parser": "^1.4.5",
     "debug": "~2.6.9",
+    "easyxml": "^2.0.1",
     "express": "~4.16.1",
     "express-session": "^1.17.1",
     "express-sessions": "^1.0.6",
