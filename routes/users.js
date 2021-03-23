@@ -43,8 +43,6 @@ router.post('/login', async function(req, res, next) {
     });
 });
 
-
-
 router.post('/createuser', async function(req, res){
   if(req.body.password == req.body.passwordRepeat){
     await handler.createUser(req);

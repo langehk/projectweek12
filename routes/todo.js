@@ -7,10 +7,11 @@ const date = require('../lib/date');
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
-  if(req.session.authenticated && req.session.role == 'ADMIN'){
-    let pendingUsers = await adminHandler.readPending();
-    res.render('admin', { pendingUsers: pendingUsers });
-  } else if(req.session.authenticated && req.session.role == 'USER'){
+  if(req.session.authenticated && req.session.role == 'ADMIN'){ //ADMIN LOGIN
+    let pendingUsers = await adminHandler.readPending(); //read all pending users
+    let users = await adminHandler.readUsers(); //read all regular users
+    res.render('admin', { pendingUsers: pendingUsers, users: users});
+  } else if(req.session.authenticated && req.session.role == 'USER'){ //REGULAR USER LOGIN
     let userQuery = {email: req.session.user};
     let user = await userHandler.readUser(req, res, userQuery);
     let pendingQuery = {$and: 
@@ -42,7 +43,6 @@ router.get('/delete/:taskID', async function(req, res, next){
 })
 
 router.post('/', async function(req, res, next){
-  
   let user = await userHandler.readUser(req, res, {email: req.session.user});
   console.log(user[0]._id);
   await taskHandler.createTask(req, res, user[0]._id);

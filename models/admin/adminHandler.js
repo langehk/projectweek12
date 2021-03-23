@@ -9,3 +9,12 @@ exports.readPending = async function (req, res){
         
     }
 }
+
+exports.readUsers = async function (req, res){
+    try {
+        let users = await mongooseWrap.retrieve(model.User, {rights: 'USER'});
+        return users;
+    } catch (error) {
+        
+    }
+}

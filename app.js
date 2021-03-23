@@ -8,6 +8,7 @@ const session = require('express-session');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var taskRouter = require('./routes/todo');
+var exportRouter = require('./routes/export');
 
 var app = express();
 
@@ -25,6 +26,7 @@ app.use(session({secret: 'aaahhhhh', resave: true, saveUninitialized: true}));  
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/todo', taskRouter);
+app.use('/export', exportRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
