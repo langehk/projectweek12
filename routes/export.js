@@ -3,7 +3,9 @@ var router = express.Router();
 const taskHandler = require('../models/task/taskHandler');
 const userHandler = require('../models/user/userHandler');
 const fs = require('fs').promises;
-
+const { DownloaderHelper } = require('node-downloader-helper'); 
+//const https = require('https'); 
+  
 /* GET home page. */
 router.get('/', function(req, res, next) {
   //res.render('index', { title: 'Express' });
@@ -20,11 +22,9 @@ router.post('/', async function(req, res, next) {
         console.log(err);
     }
   });
-  
-  
 
-  //console.log(tasks);
-  res.send('export');
+  res.download(`${user[0].firstname}_${user[0].lastname}_todo.json`);
+
 });
 
 module.exports = router;
