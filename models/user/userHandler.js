@@ -40,9 +40,15 @@ exports.createUser = async function(req, res){
 
 exports.updateUser = async function(req, res, query, updateQuery){
   try {
-    console.log(query);
-    console.log(updateQuery);
       mongooseWrap.update(model.User, query, updateQuery);
+  } catch (error) {
+      console.log(error);
+  }
+}
+
+exports.deleteUser = async function(req, res, query){
+  try {
+      mongooseWrap.delete(model.User, query);
   } catch (error) {
       console.log(error);
   }

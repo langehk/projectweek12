@@ -1,11 +1,13 @@
 extends layout
 block content
+    p(class="subtitle") Pending users: 
     each user in pendingUsers
         div
+            
             p #{user.firstname} #{user.lastname} 
             a(href='../users/acceptuser/' + user.email)
                 button Accept
-            a(href='../users/declineuser' + user.email)
+            a(href='../users/declineuser/' + user.email)
                 button Decline
 
                 
