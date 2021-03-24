@@ -6,9 +6,7 @@ const PRIORITY = {
     HIGH: 'High',
 }
 
-
 const taskSchema = mongoose.Schema({
-    //_id: Number,
     userID: String,
     description: String,
     startDate: String,

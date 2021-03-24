@@ -7,7 +7,6 @@ const Role = {
 }
 
 const userSchema = mongoose.Schema({
-    //_id:  Number,
     email: {type: String, unique: true},
     password: String,
     firstname: String, 
