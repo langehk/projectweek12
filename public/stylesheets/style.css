@@ -1,5 +1,5 @@
 body {
-  padding: 50px;
+  padding: 20px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -7,11 +7,123 @@ a {
   color: #00B7FF;
 }
 
-.description, .subtitle{
-  font-weight: bold;
-}
-
 .completed {
   color: gray;
   text-decoration: line-through;
+}
+
+.flex{
+  display: flex;
+}
+
+.flexcolumn{
+  flex-direction: column;
+}
+
+.logo, .logoSmall{
+  text-align: center;
+  font-family: 'Dancing Script', cursive;
+  color: #061A51;
+}
+
+.logo{
+  font-size: 3em;
+  margin-bottom: 0;
+}
+
+.logoSmall{
+  font-size: 1.8em;
+  margin: 0;
+}
+
+.button:hover{
+  cursor: pointer;
+}
+
+
+
+/*LOGIN PAGE*/
+#loginContainer{
+  width: 30%;
+  margin: auto;
+}
+
+#loginContainer hr{
+  margin-bottom: 2em;
+  width: 70%;
+}
+
+#loginForm{
+  margin-bottom: 5em;
+}
+
+#loginForm input{
+  margin-bottom: 1em;
+  padding: .2%;
+}
+
+/*TODO-LIST*/
+#taskForm{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+#taskContainer{
+  width: 40%;
+  margin: auto;
+  margin-top: 5%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.taskContainers{
+  margin-bottom: 10%;
+  width: max-content;
+}
+
+.taskDiv{
+  width: 10em;
+}
+
+#listOfTasks p {
+  margin: 0;
+}
+
+.deadline{
+  color: red;
+}
+
+.priority{
+  color: darkslategrey;
+}
+
+#completedTasks{
+  margin-top: 25%;
+}
+
+
+
+/*ADMIN*/ 
+#pendingUsers{
+  margin-bottom: 4%;
+  
+}
+
+#adminContainer{
+  width: 25%;
+  margin: auto;
+  margin-top: 5%;
+  display: flex;
+  justify-content: space-between;
+}
+
+#exportTodoForm{
+  display: flex;
+  flex-direction: column;
+
+}
+
+#getTodolist{
+  
 }

@@ -1,12 +1,15 @@
 extends layout 
 
 block content
-    p #{message}
-    form(method="post" id="loginForm" action="")
-        label(for="email") Enter e-mail:
-        input(type="email" name="email")
-        label(for="password") Enter password:
-        input(type="password" name="password")
-        input(type="submit" id="loginButton" value="Login")
-    p Don't have a user? 
-    a(href="./createuser") Create one here
+    
+    div(id="loginContainer" )
+        h1(class="logo") Todo-list
+        hr
+        p #{message}
+        form(method="post" id="loginForm" action="" class="flex" class="flexcolumn")
+            input(type="email" name="email" placeholder="Enter e-mail")
+            input(type="password" name="password" placeholder="Enter password")
+            input(type="submit" id="loginButton" value="Login" class="button")
+    
+        p Don't have a user? 
+        a(href="./createuser") Create one here

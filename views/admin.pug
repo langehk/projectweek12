@@ -1,25 +1,29 @@
 extends layout
 block content
-    div(id="pendingUsers")
-        p(class="subtitle") Pending users: 
-        each user in pendingUsers
-            div
-                p #{user.firstname} #{user.lastname} 
-                a(href='../users/acceptuser/' + user.email)
-                    button Accept
-                a(href='../users/declineuser/' + user.email)
-                    button Decline
-    div(id="getTodolist")
-        p(class="subtitle") Get a todo-list: 
-        form(method="post" id="exportTodoForm" action="/export")
-            label(for="chosenuser") Users:
-            select(name="chosenuser")
-                each user in users
-                    option(value=user.email) #{user.firstname} #{user.lastname} (#{user.email})
-            label(for="format") Format:
-            select(name="format")
-                option(value="xml") XML
-                option(value="json") JSON
-            input(type="submit" name="exportButton" value="Export")
+    div(class="logoSmallContainer")
+        h3(class="logoSmall") Todo-list
+    div(id="adminContainer")
+        div(id="pendingUsers")
+            h3 Pending users: 
+            each user in pendingUsers
+                div
+                    p #{user.firstname} #{user.lastname} 
+                    a(href='../users/acceptuser/' + user.email)
+                        button Accept
+                    a(href='../users/declineuser/' + user.email)
+                        button Decline
+        div(class="space")
+        div(id="getTodolist")
+            h3 Get a todo-list: 
+            form(method="post" id="exportTodoForm" action="/export")
+                label(for="chosenuser") Users:
+                select(name="chosenuser")
+                    each user in users
+                        option(value=user.email) #{user.firstname} #{user.lastname} (#{user.email})
+                label(for="format") Format:
+                select(name="format")
+                    option(value="xml") XML
+                    option(value="json") JSON
+                input(type="submit" name="exportButton" value="Export")
 
 

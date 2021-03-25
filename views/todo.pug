@@ -1,32 +1,42 @@
 extends layout
 block content
-    form(method="post" id="taskForm" action="")
-        label(for="description") Task:
-        input(type="text" name="description")
-        label(for="priority") Priority:
-        select(name="priority")
-            option(value="Low") Low
-            option(value="Medium") Medium
-            option(value="High") High
-        label(for="deadline") Deadline:
-        input(type="date" name="deadline")
-        input(type="submit" id="taskButton" value="Create")
-    hr
+    div(class="logoSmallContainer")
+        h3(class="logoSmall") Todo-list
+    div(id="taskContainer")
+        div(id="listOfTasks")
+            div
+                h3 Your tasks:
+                
+                each task in pendingTasks
+                    div(id=task._id class="taskContainers" class="flex")
+                        div(class="taskDiv" )
+                            p(class="description") #{task.description}
 
-    h3 Your tasks:
-    each task in pendingTasks
-        div(id=task._id clas="taskContainers")
-            p(class="description") #{task.description}
-            p(class="subtitle") Deadline
-            p #{task.deadline}
-            p(class="subtitle") Priority
-            p #{task.priority}
-            a(href="/todo/complete/" + task._id)
-                Button Complete
-            a(href="/todo/delete/" + task._id)
-                Button Remove
-            hr
-    h3 What you've done so far:
-    each task in completedTasks
-        div(id=task._id clas="taskContainers")
-            p(class="completed") #{task.description}
+                            p(class="deadline") #{task.deadline}
+                            p(class="priority") Priority: #{task.priority}
+                        div(class="completeRemove" )
+                            a(href="/todo/complete/" + task._id)
+                                Button Complete
+                            a(href="/todo/delete/" + task._id)
+                                Button Remove
+
+            div(id="completedTasks")
+                h3 What you've done so far:
+                each task in completedTasks
+                    div(id=task._id clas="taskContainers")
+                        p(class="completed") #{task.description}
+        div(class="space")
+        form(method="post" id="taskForm" action="")
+            h3 Create new task:
+            label(for="description") Task:
+            input(type="text" name="description")
+            label(for="priority") Priority:
+            select(name="priority")
+                option(value="Low") Low
+                option(value="Medium") Medium
+                option(value="High") High
+            label(for="deadline") Deadline:
+            input(type="date" name="deadline")
+            input(type="submit" id="taskButton" value="Create")
+
+

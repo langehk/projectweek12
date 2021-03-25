@@ -8,15 +8,15 @@ router.get('/', async function(req, res, next) {
 });
 
 router.get('/login', function(req, res, next) {
-  res.render('login', { title: 'Express' });
+  res.render('login', { title: 'Todo-list' });
 });
 
 router.get('/pending', function(req, res, next) {
-  res.render('pending', { title: 'Express' });
+  res.render('pending', { title: 'Todo-list: pending' });
 });
 
 router.get('/createuser', function(req, res, next) {
-  res.render('createuser', { title: 'Express' });
+  res.render('createuser', { title: 'Todo-list: create new user' });
 });
 
 router.get('/acceptuser/:email', async function(req, res, next) {
